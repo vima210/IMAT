@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calcolatore Posizione IMAT</title>
+  <link rel="stylesheet" href="style.css"> <!-- Referenza al file CSS -->
+</head>
+<body>
+  <div class="container">
+    <h1>Calcolatore Posizione IMAT</h1>
+    
+    <!-- Il tuo form per l'input dei punteggi -->
+    <form id="rankingForm">
+      <label for="totalScore">Punteggio Totale:</label>
+      <input type="text" id="totalScore" name="totalScore" required>
+      <br>
+      
+      <label for="bioScore">Punteggio Biologia:</label>
+      <input type="text" id="bioScore" name="bioScore" required>
+      <br>
+
+      <label for="chemistryScore">Punteggio Chimica:</label>
+      <input type="text" id="chemistryScore" name="chemistryScore" required>
+      <br>
+
+      <label for="mathScore">Punteggio Matematica:</label>
+      <input type="text" id="mathScore" name="mathScore" required>
+      <br>
+
+      <input type="submit" value="Calcola Posizione">
+    </form>
+
+    <!-- Dove visualizzerai il risultato -->
+    <div id="result"></div>
+    
+    <!-- Tabella con i dati -->
+    <table id="scoreTable" class="data-table">
+      <!-- La tabella verrà riempita con i dati dal JavaScript -->
+    </table>
+  </div>
+
+  <!-- Caricamento dello script -->
+  <script src="script.js"></script>
+</body>
+</html>
