@@ -153,7 +153,7 @@ document.getElementById('rankingForm').addEventListener('submit', function(e) {
       }
 
       // Visualizza il risultato
-      document.getElementById('result').innerHTML = 'La posizione stimata per il 10 Ottobre è' + ' ' + posizioneFinale;
+      document.getElementById('result').innerHTML = `La posizione stimata per il 10 Ottobre è ${posizioneFinale}`;
       evidenziaPosizioni(tableData, posizioneFinale);
 
     })
