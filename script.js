@@ -94,39 +94,72 @@ document.getElementById('rankingForm').addEventListener('submit', function(e) {
         };
       });
 
-      // Calcola la posizione dell'utente
       const posizione = calculatePosition(tableData, totalScore, bioScore, chemistryScore, mathScore);
 
-      // Raggruppa per sede e calcola quante persone devono essere escluse in base alla percentuale
-      const partecipantiPerSede = {};
-      tableData.slice(0, posizione).forEach(row => {
-        const sede = row.Sede;
-        partecipantiPerSede[sede] = (partecipantiPerSede[sede] || 0) + 1;  // Conta i partecipanti per ogni sede
-      });
+      let posizioneFinale = 0;
+      
+      // Se la posizione è inferiore o uguale a 2000, calcola come prima
+      if (posizione <= 2000) {
+        // Raggruppa per sede e calcola quante persone devono essere escluse in base alla percentuale
+        const partecipantiPerSede = {};
+        tableData.slice(0, posizione).forEach(row => {
+          const sede = row.Sede;
+          partecipantiPerSede[sede] = (partecipantiPerSede[sede] || 0) + 1;  // Conta i partecipanti per ogni sede
+        });
 
-      let personeEscluse = 0;
-      const esclusioniPerSede = {};  // Oggetto per tenere traccia delle esclusioni per ogni sede
+        let personeEscluse = 0;
+        const esclusioniPerSede = {};  // Oggetto per tenere traccia delle esclusioni per ogni sede
 
-      // Calcola esclusioni per ogni sede
-      for (let sede in partecipantiPerSede) {
-        const numeroPartecipanti = partecipantiPerSede[sede];
-        const percentualeEsclusione = sedePercentuale[sede] || 0;
-        const esclusioni = Math.floor(numeroPartecipanti * percentualeEsclusione);
-        personeEscluse += esclusioni;
-        esclusioniPerSede[sede] = esclusioni;
+        // Calcola esclusioni per ogni sede
+        for (let sede in partecipantiPerSede) {
+          const numeroPartecipanti = partecipantiPerSede[sede];
+          const percentualeEsclusione = sedePercentuale[sede] || 0;
+          const esclusioni = Math.floor(numeroPartecipanti * percentualeEsclusione);
+          personeEscluse += esclusioni;
+          esclusioniPerSede[sede] = esclusioni;
+        }
+
+        // Calcola la posizione finale tenendo conto delle esclusioni
+        posizioneFinale = posizione - personeEscluse;
+      } else {
+        // Posizione > 2000, calcola separatamente fino a 2000 e oltre
+        const posizioneFinoADuemila = 2000;
+        const posizioneDopoDuemila = Math.abs(posizione - 2000) * 0.35;
+
+        // Calcoliamo le esclusioni fino a 2000
+        const partecipantiPerSede = {};
+        tableData.slice(0, posizioneFinoADuemila).forEach(row => {
+          const sede = row.Sede;
+          partecipantiPerSede[sede] = (partecipantiPerSede[sede] || 0) + 1;  // Conta i partecipanti per ogni sede
+        });
+
+        let personeEscluseFinoADuemila = 0;
+        const esclusioniPerSedeFinoADuemila = {};  // Oggetto per tenere traccia delle esclusioni per ogni sede fino a 2000
+
+        // Calcola esclusioni fino a 2000
+        for (let sede in partecipantiPerSede) {
+          const numeroPartecipanti = partecipantiPerSede[sede];
+          const percentualeEsclusione = sedePercentuale[sede] || 0;
+          const esclusioni = Math.floor(numeroPartecipanti * percentualeEsclusione);
+          personeEscluseFinoADuemila += esclusioni;
+          esclusioniPerSedeFinoADuemila[sede] = esclusioni;
+        }
+
+        // Calcoliamo la posizione fino a 2000
+        const posizioneFinoADuemilaFinale = posizioneFinoADuemila - personeEscluseFinoADuemila;
+
+        // Calcoliamo la posizione finale
+        posizioneFinale = posizione - posizioneFinoADuemilaFinale - posizioneDopoDuemila;
       }
 
-      // Calcola la posizione finale tenendo conto delle esclusioni
-      const posizioneFinale = posizione - personeEscluse;
-
       // Visualizza il risultato
-      document.getElementById('result').innerHTML = 'La posizione stimata per il 10 Ottobre è' + posizioneFinale;
+      document.getElementById('result').innerHTML = 'La posizione stimata per il 10 Ottobre è ' + posizioneFinale;
       evidenziaPosizioni(tableData, posizioneFinale);
 
     })
-    
     .catch(error => console.error('Errore nel caricamento del CSV:', error));
 });
+
 
 // Funzione per caricare e visualizzare la tabella con i dati forniti
 function loadTable() {
