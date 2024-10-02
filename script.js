@@ -120,7 +120,7 @@ document.getElementById('rankingForm').addEventListener('submit', function(e) {
       const posizioneFinale = posizione - personeEscluse;
 
       // Visualizza il risultato
-      document.getElementById('result').innerHTML = 'La tua posizione finale, al netto delle esclusioni, è: ' + posizioneFinale;
+      document.getElementById('result').innerHTML = 'La posizione stimata per il 10 Ottobre è' + posizioneFinale;
       evidenziaPosizioni(tableData, posizioneFinale);
 
     })
