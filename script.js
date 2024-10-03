@@ -192,7 +192,7 @@ function loadTable() {
     { Sede: 'PARMA', Posti: 75, Scorrimento0: 821, Ottimistico: 2380, Pessimistico: 1067 },
     { Sede: 'CATANIA', Posti: 30, Scorrimento0: 1080, Ottimistico: 3132, Pessimistico: 1404 },
     { Sede: 'MESSINA', Posti: 55, Scorrimento0: 1056, Ottimistico: 3062, Pessimistico: 1373 },
-    { Sede: 'CAGLIARI', Posti: 80, Scorrimento0: 1200, Ottimistico: 3480, Pessimistico: 1560 },
+    { Sede: 'CAGLIARI', Posti: 80, Scorrimento0: 1102, Ottimistico: 3480, Pessimistico: 1560 },
   ];
 
   let tableHTML = '<thead><tr><th>Sede</th><th>Posti disponibili</th><th>Ultima posizione allo scorrimento ZERO</th><th>Ultima posizione allo Scorrimento finale OTTIMISTICO</th><th>Ultima posizione allo scorrimento finale PESSIMISTICO</th></tr></thead><tbody>';
