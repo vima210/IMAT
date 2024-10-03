@@ -9,23 +9,24 @@
 <body>
   <div class="container">
     <h1>Stima Graduatoria 10 Ottobre IMAT</h1>
-    <h3>Tieni presente che si tratta di una stima indicativa basata sui risultati del 2023 e sui dati anonimi del 2024</h3>
+    <h3 >Inserisci il tuo punteggio e riceverai una stima della tua posizione in graduatoria il 10 Ottobre. 
+      Il numero che vedrai indica quante persone potresti avere davanti in graduatoria. </h3>
     
     <!-- Il tuo form per l'input dei punteggi -->
     <form id="rankingForm">
-      <label for="totalScore">Punteggio Totale:</label>
+      <label for="totalScore">Il tuo Punteggio Totale:</label>
       <input type="text" id="totalScore" name="totalScore" required>
       <br>
       
-      <label for="bioScore">Punteggio Biologia:</label>
+      <label for="bioScore">Il tuo Punteggio in Biologia:</label>
       <input type="text" id="bioScore" name="bioScore" required>
       <br>
 
-      <label for="chemistryScore">Punteggio Chimica:</label>
+      <label for="chemistryScore">Il tuo Punteggio in Chimica:</label>
       <input type="text" id="chemistryScore" name="chemistryScore" required>
       <br>
 
-      <label for="mathScore">Punteggio Matematica:</label>
+      <label for="mathScore">Il tuo Punteggio in Matematica:</label>
       <input type="text" id="mathScore" name="mathScore" required>
       <br>
 
@@ -37,9 +38,16 @@
     
     <!-- Tabella con i dati -->
     <table id="scoreTable" class="data-table">
+      <p>Qui sotto trovi una STIMA delle ultime posizioni utili per ogni 
+        università. Lo scorrimento zero sarà al 10 Ottobre. L'ultimo scorrimento è invece una stima sull'ultima possiblità di ingresso alla fine d tutti
+          gli scorrimenti, la stima ottimista si basa sui dati del 2022 quella pessimistica sul 2023. Se il tuo punteggio è inferiore all'ultima posizoine utile 
+        sei dentro (casella verde), se invece è superire, beh speriamo che il modello si sbagli (casella rossa)! </p>
       <!-- La tabella verrà riempita con i dati dal JavaScript -->
     </table>
+    
   </div>
+
+
 
   <!-- Caricamento dello script -->
   <script src="script.js"></script>

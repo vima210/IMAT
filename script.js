@@ -17,23 +17,23 @@ document.getElementById('mathScore').addEventListener('input', validateInput);
 
 // Mappa delle percentuali di esclusione per sede
 const sedePercentuale = {
-  "marche": 0.20,
-  "messina": 0.20,
+  "marche": 0.40,
+  "messina": 0.40,
   "parma": 0.40,
   "lvanvitelli": 0.40,
   "pavia": 0.30,
-  "federico": 0.30,
-  "torino": 0.30,
-  "bologna": 0.20,
+  "federico": 0.35,
+  "torino": 0.35,
+  "bologna": 0.25,
   "bari": 0.20,
   "sapienza": 0.15,
   "padova": 0.15,
-  "milano": 0.10,
+  "milano": 0.15,
   "bicocca": 0.05,
   "catania": 0.01,
   "torvergata": 0.01,
   "dent_siena": 0.05,
-  "esteri": 0.90
+  "esteri": 0.92
 };
 
 // Funzione per calcolare la posizione dell'utente nella graduatoria
@@ -57,10 +57,12 @@ function calculatePosition(tableData, totalScore, bioScore, chemistryScore, math
         }
       }
     }
+    
   });
-
+  console.log(posizione);
   return posizione;
 }
+
 
 // Aggiungi la gestione della logica di calcolo per la posizione
 document.getElementById('rankingForm').addEventListener('submit', function(e) {
@@ -121,10 +123,11 @@ document.getElementById('rankingForm').addEventListener('submit', function(e) {
 
         // Calcola la posizione finale tenendo conto delle esclusioni
         posizioneFinale = posizione - personeEscluse;
+        
       } else {
         // Posizione > 2000, calcola separatamente fino a 2000 e oltre
         const posizioneFinoADuemila = 2000;
-        const posizioneDopoDuemila = Math.abs(posizione - 2000) * 0.35;
+        const posizioneDopoDuemila = Math.abs(posizione - 2000) * 0.63;
 
         // Calcoliamo le esclusioni fino a 2000
         const partecipantiPerSede = {};
@@ -150,8 +153,10 @@ document.getElementById('rankingForm').addEventListener('submit', function(e) {
 
         // Calcoliamo la posizione finale
         posizioneFinale = posizione - posizioneFinoADuemilaFinale - posizioneDopoDuemila;
+        
+        
       }
-
+      
       // Visualizza il risultato
       document.getElementById('result').innerHTML = `La posizione stimata per il 10 Ottobre è ${posizioneFinale}`;
       evidenziaPosizioni(tableData, posizioneFinale);
@@ -183,7 +188,7 @@ function loadTable() {
     { Sede: 'CAGLIARI', Posti: 80, Scorrimento0: 1130, Ottimistico: 3227, Pessimistico: 1469 },
   ];
 
-  let tableHTML = '<thead><tr><th>Sede</th><th>Posti disponibili</th><th>Scorrimento Zero</th><th>Ultimo Scorrimento Ottimistico</th><th>Ultimo Scorrimento Pessimistico</th></tr></thead><tbody>';
+  let tableHTML = '<thead><tr><th>Sede</th><th>Posti disponibili</th><th>Ultima posizione allo scorrimento ZERO</th><th>Ultima posizione allo Scorrimento finale OTTIMISTICO</th><th>Ultima posizione allo scorrimento finale PESSIMISTICO</th></tr></thead><tbody>';
 
   tableData.forEach(row => {
     tableHTML += `<tr><td>${row.Sede}</td><td>${row.Posti}</td><td>${row.Scorrimento0}</td><td>${row.Ottimistico}</td><td>${row.Pessimistico}</td></tr>`;
