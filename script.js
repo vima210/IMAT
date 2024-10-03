@@ -33,7 +33,7 @@ const sedePercentuale = {
   "catania": 0.01,
   "torvergata": 0.01,
   "dent_siena": 0.05,
-  "esteri": 0.8
+  "esteri": 0.9
 };
 
 // Funzione per calcolare la posizione dell'utente nella graduatoria
@@ -119,10 +119,13 @@ document.getElementById('rankingForm').addEventListener('submit', function(e) {
           const esclusioni = Math.floor(numeroPartecipanti * percentualeEsclusione);
           personeEscluse += esclusioni;
           esclusioniPerSede[sede] = esclusioni;
+          console.log(`Sede: ${sede}, Partecipanti: ${numeroPartecipanti}, Percentuale Esclusione: ${percentualeEsclusione}, Esclusioni: ${esclusioni}`);
+
         }
 
         // Calcola la posizione finale tenendo conto delle esclusioni
         posizioneFinale = posizione - personeEscluse;
+        
         
       } else {
         // Posizione > 2000, calcola separatamente fino a 2000 e oltre
