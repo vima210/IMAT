@@ -33,7 +33,7 @@ const sedePercentuale = {
   "catania": 0.01,
   "torvergata": 0.01,
   "dent_siena": 0.05,
-  "esteri": 0.82
+  "esteri": 0.85
 };
 
 // Funzione per calcolare la posizione dell'utente nella graduatoria
@@ -244,6 +244,7 @@ function evidenziaPosizioni(tableData, posizioneFinale) {
       posizioneCell5.style.color = 'green'; // Evidenzia in verde i numeri maggiori della PosizioneFinale
     }
   });
+  console.log("function called")
 }
 
 
